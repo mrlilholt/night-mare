@@ -1,6 +1,9 @@
 namespace SpriteKind {
     export const button = SpriteKind.create()
 }
+scene.onHitWall(SpriteKind.Player, function (sprite, location) {
+    score = 1
+})
 function level1 () {
     HORSE = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -96,7 +99,7 @@ function level1 () {
         fffffffffffff11f1f1fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         fffffffffffffffffff1ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffff11ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-        ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff3fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -145,16 +148,70 @@ function level1 () {
     tiles.setCurrentTilemap(tilemap`level1`)
     scene.cameraFollowSprite(HORSE)
     HORSE.setVelocity(50, 0)
-    HORSE.setPosition(10, 80)
+    animation.runImageAnimation(
+    HORSE,
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . 1 1 . . 
+        . . . . . . . . . . 1 1 1 1 1 . 
+        . . . 1 . . . . . . 1 . . . . . 
+        . . . . 1 1 1 1 1 1 . . . . . . 
+        . . . . 1 1 . . . 1 1 . . . . . 
+        . . . 1 1 . . . 1 . . 1 . . . . 
+        . . . . 1 . . . 1 . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . 1 . . . . . 
+        . . . . . . . . . . 1 1 1 . . . 
+        . . . . . . . . . . 1 1 1 1 . . 
+        . . . 1 . . . . . . 1 . . . . . 
+        . . . . 1 1 1 1 1 1 . . . . . . 
+        . . . . 1 1 . . . 1 1 . . . . . 
+        . . . . 1 1 . . . 1 1 . . . . . 
+        . . . . 1 . . . . 1 . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . 1 . . . . . 
+        . . . . . . . . . . . 1 1 1 . . 
+        . . . . . . . . . . 1 1 1 1 1 . 
+        . . . 1 . . . . . . 1 . . . . . 
+        . . . . 1 1 1 1 1 1 . . . . . . 
+        . . . . 1 1 . . . 1 1 . . . . . 
+        . . . 1 . 1 . . 1 . 1 . . . . . 
+        . . . . . . 1 . . . . 1 . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `],
+    200,
+    true
+    )
+    HORSE.setPosition(14, 97)
     controller.moveSprite(HORSE)
     play.destroy()
     mySprite.destroy()
     cursor.destroy()
     help.destroy()
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-	
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
     mySprite.setPosition(180, 90)
 })
@@ -840,6 +897,7 @@ let cursor: Sprite = null
 let mySprite: Sprite = null
 let play: Sprite = null
 let HORSE: Sprite = null
+let score = 0
 let level = 0
 level = 0
 level_Control()
