@@ -2,6 +2,24 @@ namespace SpriteKind {
     export const button = SpriteKind.create()
 }
 function level1 () {
+    HORSE = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . 1 1 . . 
+        . . . . . . . . . . . . 1 1 1 . 
+        . . . . . . . . . . . . . 1 1 1 
+        . . . 1 1 1 1 1 1 1 1 1 1 1 . . 
+        . . . 1 . . . . . 1 . 1 . . . . 
+        . . . 1 . . . . 1 . . . 1 . . . 
+        . . . 1 1 . . 1 . . . . 1 . . . 
+        . . . 1 . 1 . . . . . . 1 . . . 
+        . 1 1 1 . . . . . . . . 1 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player)
     scene.setBackgroundImage(img`
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -78,7 +96,7 @@ function level1 () {
         fffffffffffff11f1f1fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         fffffffffffffffffff1ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffff11ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-        ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff3fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -124,32 +142,15 @@ function level1 () {
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         `)
+    tiles.setCurrentTilemap(tilemap`level1`)
+    scene.cameraFollowSprite(HORSE)
+    HORSE.setVelocity(50, 0)
+    HORSE.setPosition(10, 80)
+    controller.moveSprite(HORSE)
     play.destroy()
     mySprite.destroy()
     cursor.destroy()
     help.destroy()
-    HORSE = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . 1 1 . . 
-        . . . . . . . . . . . . 1 1 1 . 
-        . . . . . . . . . . . . . 1 1 1 
-        . . . 1 1 1 1 1 1 1 1 1 1 1 . . 
-        . . . 1 . . . . . 1 . 1 . . . . 
-        . . . 1 . . . . 1 . . . 1 . . . 
-        . . . 1 1 . . 1 . . . . 1 . . . 
-        . . . 1 . 1 . . . . . . 1 . . . 
-        . 1 1 1 . . . . . . . . 1 . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Player)
-    HORSE.setPosition(4, 95)
-    HORSE.setVelocity(50, 0)
-    controller.moveSprite(HORSE)
-    scene.cameraFollowSprite(HORSE)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 	
@@ -834,14 +835,17 @@ function level_Control () {
     }
 }
 let mySprite2: Sprite = null
-let HORSE: Sprite = null
 let help: Sprite = null
 let cursor: Sprite = null
 let mySprite: Sprite = null
 let play: Sprite = null
+let HORSE: Sprite = null
 let level = 0
 level = 0
 level_Control()
 forever(function () {
     mySprite.setVelocity(-100, 0)
+})
+forever(function () {
+	
 })
